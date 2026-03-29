@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import SiteHeader from "./site-header";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -33,29 +34,7 @@ export default function RootLayout({
       className="h-full antialiased"
     >
       <body className="site-wide-glow min-h-full flex flex-col">
-        <header className="site-header">
-          <div className="site-header__inner">
-            <Link href="/" className="site-brand">
-              <span className="site-brand__mark">SR</span>
-              <span className="site-brand__text">
-                <strong>Sky Rocket Venture</strong>
-                <small>Ecommerce Growth Experts</small>
-              </span>
-            </Link>
-
-            <nav className="site-nav" aria-label="Primary navigation">
-              {navLinks.map((link) => (
-                <Link key={link.href} href={link.href} className="site-nav__link">
-                  {link.label}
-                </Link>
-              ))}
-            </nav>
-
-            <Link href="/contact" className="site-header__cta">
-              Book a Call
-            </Link>
-          </div>
-        </header>
+        <SiteHeader navLinks={navLinks} />
 
         <main className="flex-1">{children}</main>
 
