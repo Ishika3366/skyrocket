@@ -2,6 +2,30 @@
 
 import { motion } from "framer-motion";
 
+type PlatformLetter = {
+  text: string;
+  className: string;
+};
+
+type Platform =
+  | {
+      name: string;
+      kind: "text";
+      logoText: string;
+      logoClass: string;
+    }
+  | {
+      name: string;
+      kind: "badge";
+      badgeClass: string;
+      logoText: string;
+    }
+  | {
+      name: string;
+      kind: "rich";
+      letters: PlatformLetter[];
+    };
+
 const marketplaces = [
   { name: "Amazon", label: "amazon", accent: "marketplace-card--amazon" },
   { name: "Flipkart", label: "flipkart", accent: "marketplace-card--flipkart" },
@@ -44,7 +68,7 @@ const homeServices = [
   },
 ];
 
-const platforms = [
+const platforms: Platform[] = [
   {
     name: "Amazon",
     kind: "text",
@@ -146,7 +170,7 @@ const testimonials = [
   },
 ];
 
-function renderPlatformLogo(platform: (typeof platforms)[number]) {
+function renderPlatformLogo(platform: Platform) {
   if (platform.kind === "rich") {
     return (
       <div className="flex items-end justify-center gap-0.5 text-[3.2rem] font-bold leading-none">
